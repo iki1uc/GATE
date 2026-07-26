@@ -1,7 +1,8 @@
 {
   "gate": "GAMMA",
-  "ist": 5,
-  "soll": 7,
-  "bedeutung": "Weiter auf der Achse",
-  "axis": "ODD-GATE-AXIS"
+  "ist": 7,
+  "soll": 5,
+  "bedeutung": "Rücksprung",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Weggang"
 }
