@@ -1,1 +1,9 @@
+{
+  "gate": "BETA",
+  "ist": 3,
+  "soll": 5,
+  "bedeutung": "Weiter",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Ankunft"
+}
 
