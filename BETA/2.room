@@ -1,8 +1,8 @@
 {
   "gate": "BETA",
-  "ist": 3,
-  "soll": 5,
-  "bedeutung": "Weiter auf der Achse",
-  "axis": "ODD-GATE-AXIS"
+  "ist": 5,
+  "soll": 3,
+  "bedeutung": "Rücksprung",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Weggang"
 }
-
