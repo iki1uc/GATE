@@ -1,8 +1,8 @@
 {
   "gate": "EPSILON",
-  "ist": 9,
-  "soll": 0,
-  "bedeutung": "Reset",
-  "axis": "ODD-GATE-AXIS"
+  "ist": 0,
+  "soll": 9,
+  "bedeutung": "Rücksprung",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Weggang"
 }
-
