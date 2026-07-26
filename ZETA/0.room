@@ -3,6 +3,6 @@
   "ist": 0,
   "soll": 1,
   "bedeutung": "Neustart",
-  "axis": "ODD-GATE-AXIS"
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Ankunft"
 }
-
