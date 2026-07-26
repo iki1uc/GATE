@@ -1,0 +1,9 @@
+{
+  "gate": "GAMMA",
+  "ist": 5,
+  "soll": 7,
+  "bedeutung": "Weiter",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Ankunft"
+}
+
