@@ -1,77 +1,235 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>iki1uc – Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #eee;
-            margin: 0;
-            padding: 40px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #6cf;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        h2 {
-            color: #9df;
-            border-bottom: 1px solid #444;
-            padding-bottom: 6px;
-        }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        li {
-            margin: 8px 0;
-        }
-        a {
-            color: #6cf;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-        a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>ULTRA‑INDEX · iki1uc</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #eee;
+        margin: 0;
+        padding: 40px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #6cf;
+    }
+    .section {
+        margin-bottom: 40px;
+        padding: 20px;
+        border: 1px solid #333;
+        background: #181818;
+    }
+    h2 {
+        color: #9df;
+        border-bottom: 1px solid #444;
+        padding-bottom: 6px;
+    }
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    li {
+        margin: 8px 0;
+    }
+    a {
+        color: #6cf;
+        text-decoration: none;
+        font-size: 1.1em;
+    }
+    a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+    pre {
+        background: #222;
+        padding: 10px;
+        overflow-x: auto;
+    }
+    button {
+        padding: 12px 20px;
+        background: #6cf;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1em;
+        margin-top: 10px;
+    }
+    button:hover {
+        background: #9ef;
+    }
+</style>
 </head>
 <body>
 
-<h1>iki1uc – Repository Index</h1>
+<h1>ULTRA‑INDEX · iki1uc</h1>
 
+<!-- AUTO HTML MODULE -->
 <div class="section">
-    <h2>HTML Module</h2>
-    <ul>
-        <li><a href="1.html">1.html</a></li>
-        <li><a href="6D.html">6D.html</a></li>
-        <li><a href="9.html">9.html</a></li>
-        <li><a href="BEAT².html">BEAT².html</a></li>
-        <li><a href="BEAT³.html">BEAT³.html</a></li>
-        <li><a href="CUBE.html">CUBE.html</a></li>
-    </ul>
+    <h2>HTML Module (Auto)</h2>
+    <ul id="auto-html"></ul>
 </div>
 
+<!-- AUTO CSV -->
 <div class="section">
-    <h2>CSV Daten</h2>
-    <ul>
-        <li><a href="achse-ist-6.csv">achse-ist-6.csv</a></li>
-        <li><a href="bereich-ist-6.csv">bereich-ist-6.csv</a></li>
-        <li><a href="modul-aufgabe-8.csv">modul-aufgabe-8.csv</a></li>
-    </ul>
+    <h2>CSV Daten (Auto)</h2>
+    <ul id="auto-csv"></ul>
 </div>
 
+<!-- GATE AUTO -->
 <div class="section">
-    <h2>Repository Info</h2>
-    <p>Dieses Repository enthält die neuen Module, Daten und Strukturen für das ULTRA‑System.</p>
+    <h2>GATE Auto‑Loader</h2>
+    <button onclick="loadGATE()">GATE Laden</button>
+    <pre id="gateOut">Noch keine Daten…</pre>
 </div>
+
+<!-- WLOCH AUTO -->
+<div class="section">
+    <h2>WLOCH Auto‑Stabilisation</h2>
+    <button onclick="loadWLOCH()">WLOCH Anwenden</button>
+    <pre id="wlochOut">Bereit…</pre>
+</div>
+
+<!-- NC‑LINK AUTO -->
+<div class="section">
+    <h2>NC‑LINK Auto‑Sync</h2>
+    <button onclick="loadNCLINK()">NC‑LINK Sync</button>
+    <pre id="nclinkOut">Bereit…</pre>
+</div>
+
+<!-- EXPORT AUTO -->
+<div class="section">
+    <h2>EXPORT Auto‑Output</h2>
+    <button onclick="loadEXPORT()">EXPORT Starten</button>
+    <pre id="exportOut">Bereit…</pre>
+</div>
+
+<script type="module">
+
+/* -----------------------------------------
+   AUTO INDEX SCANNER
+----------------------------------------- */
+async function autoIndex() {
+    const response = await fetch(".");
+    const text = await response.text();
+
+    // HTML-Dateien erkennen
+    const htmlFiles = [...text.matchAll(/href="([^"]+\.html)"/g)]
+        .map(m => m[1])
+        .filter(f => !f.includes("index.html"));
+
+    // CSV-Dateien erkennen
+    const csvFiles = [...text.matchAll(/href="([^"]+\.csv)"/g)]
+        .map(m => m[1]);
+
+    // HTML-Liste einfügen
+    const htmlList = document.getElementById("auto-html");
+    htmlFiles.forEach(file => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${file}">${file}</a>`;
+        htmlList.appendChild(li);
+    });
+
+    // CSV-Liste einfügen
+    const csvList = document.getElementById("auto-csv");
+    csvFiles.forEach(file => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${file}">${file}</a>`;
+        csvList.appendChild(li);
+    });
+}
+autoIndex();
+
+/* -----------------------------------------
+   GATE AUTO‑LOADER
+----------------------------------------- */
+async function loadGATE() {
+    const rooms = ["0.room","1.room","2.room","3.room","4.room","5.room","6.room","7.room","8.room","9.room"];
+    const data = {};
+
+    for (const r of rooms) {
+        const res = await fetch(r);
+        data[r] = await res.json();
+    }
+
+    document.getElementById("gateOut").innerText =
+        JSON.stringify(data, null, 2);
+}
+
+/* -----------------------------------------
+   WLOCH AUTO‑STABILISATION
+----------------------------------------- */
+async function loadWLOCH() {
+    const rooms = ["0.room","1.room","2.room","3.room","4.room","5.room","6.room","7.room","8.room","9.room"];
+    const out = {};
+
+    for (const r of rooms) {
+        const res = await fetch(r);
+        const room = await res.json();
+
+        out[r] = {
+            ...room,
+            wloch: "STABLE",
+            vibration: "REDUCED",
+            direction: "LOCKED"
+        };
+    }
+
+    document.getElementById("wlochOut").innerText =
+        JSON.stringify(out, null, 2);
+}
+
+/* -----------------------------------------
+   NC‑LINK AUTO‑SYNC
+----------------------------------------- */
+async function loadNCLINK() {
+    const rooms = ["0.room","1.room","2.room","3.room","4.room","5.room","6.room","7.room","8.room","9.room"];
+    const out = {};
+
+    for (const r of rooms) {
+        const res = await fetch(r);
+        const room = await res.json();
+
+        out[r] = {
+            ...room,
+            sync: "FULL",
+            route: "ODD-GATE-AXIS"
+        };
+    }
+
+    document.getElementById("nclinkOut").innerText =
+        JSON.stringify(out, null, 2);
+}
+
+/* -----------------------------------------
+   EXPORT AUTO‑OUTPUT
+----------------------------------------- */
+async function loadEXPORT() {
+    const rooms = ["0.room","1.room","2.room","3.room","4.room","5.room","6.room","7.room","8.room","9.room"];
+    const out = {};
+
+    for (const r of rooms) {
+        const res = await fetch(r);
+        const room = await res.json();
+
+        out[r] = {
+            gate: room.gate,
+            ist: room.ist,
+            soll: room.soll,
+            bedeutung: room.bedeutung,
+            axis: room.axis,
+            export: "READY"
+        };
+    }
+
+    document.getElementById("exportOut").innerText =
+        JSON.stringify(out, null, 2);
+}
+
+</script>
 
 </body>
 </html>
