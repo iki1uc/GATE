@@ -1,8 +1,8 @@
 {
   "gate": "DELTA",
-  "ist": 7,
-  "soll": 9,
-  "bedeutung": "Weiter auf der Achse",
-  "axis": "ODD-GATE-AXIS"
+  "ist": 9,
+  "soll": 7,
+  "bedeutung": "Rücksprung",
+  "axis": "ODD-GATE-AXIS",
+  "richtung": "Weggang"
 }
-
